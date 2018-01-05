@@ -37,14 +37,14 @@ gulp.task('html:watch', ['html:build'], function(done) {
   done();
 });
 
-gulp.task('css:build', function() {
+gulp.task('css:build', () => {
   return gulp
     .src(paths.styles)
     .pipe(concat('styles.css'))
     .pipe(gulp.dest('./build/css'));
 });
 
-gulp.task('css:watch', ['css:build'], function(done) {
+gulp.task('css:watch', ['css:build'], done => {
   browserSync.reload();
   done();
 });
