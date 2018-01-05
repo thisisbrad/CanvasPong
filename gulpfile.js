@@ -32,7 +32,7 @@ gulp.task('html:build', () => {
   return gulp.src(paths.html).pipe(gulp.dest('./build'));
 });
 
-gulp.task('html:watch', ['html:build'], function(done) {
+gulp.task('html:watch', ['html:build'], done => {
   browserSync.reload();
   done();
 });
