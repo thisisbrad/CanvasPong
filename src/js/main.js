@@ -1,4 +1,1 @@
-console.log('index.js');
-
-
-console.log('pong.js');
+console.log('main.js');
