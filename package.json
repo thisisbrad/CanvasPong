@@ -1,0 +1,23 @@
+{
+  "name": "canvaspong",
+  "version": "0.0.1",
+  "description": "Canvs HTML5 Pong game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisbrad/CanvasPong.git"
+  },
+  "keywords": [
+    "HTML5",
+    "Canvas"
+  ],
+  "author": "Brad Beltowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thisisbrad/CanvasPong/issues"
+  },
+  "homepage": "https://github.com/thisisbrad/CanvasPong#readme"
+}
