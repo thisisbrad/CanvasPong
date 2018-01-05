@@ -37,9 +37,24 @@ gulp.task('html:watch', ['html:build'], function(done) {
   done();
 });
 
+gulp.task('css:build', function() {
+  return gulp
+    .src(paths.styles)
+    .pipe(concat('styles.css'))
+    .pipe(gulp.dest('./build/css'));
+});
+
+gulp.task('css:watch', ['css:build'], function(done) {
+  browserSync.reload();
+  done();
+});
+
+gulp.task('build', ['html:build', 'js:build', 'css:build']);
+
 gulp.task('watch', () => {
   gulp.watch(paths.scripts, ['js:watch']);
+  gulp.watch(paths.styles, ['css:watch']);
   gulp.watch(paths.html, ['html:watch']);
 });
 
-gulp.task('default', ['serve', 'watch']);
+gulp.task('default', ['build', 'serve', 'watch']);
