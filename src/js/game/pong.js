@@ -16,8 +16,8 @@ window.onload = () => {
 };
 
 function moveEverything() {
+  console.log('MOVING');
   ballX = ballX + ballSpeedX;
-  console.log('MOVING', ballX);
 }
 
 function drawEverything() {
