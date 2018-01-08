@@ -12,7 +12,6 @@ const PADDLE_HEIGHT = 100;
 const PADDLE_THICKNESS = 10;
 
 function calcualtePlayerPaddle(e) {
-  console.log('this happened', e);
   const rect = canvas.getBoundingClientRect();
   const root = document.documentElement;
   const mouseX = e.clientX - rect.left - root.scrollLeft;
@@ -34,9 +33,8 @@ window.onload = () => {
   }, 1000 / FPS);
 
   canvas.addEventListener('mousemove', e => {
-    console.log('it moved');
     const mousePos = calcualtePlayerPaddle(e);
-    playerPaddleY = mousePos.y - PADDLE_HEIGHT / 2;
+    compPaddleY = mousePos.y - PADDLE_HEIGHT / 2;
   });
 };
 
@@ -48,12 +46,18 @@ function moveEverything() {
       ballSpeedX = -ballSpeedX;
       console.log('HIT');
     } else {
-      ballReset();
-      // ballSpeedX = -ballSpeedX;
+      // ballReset();
+      ballSpeedX = -ballSpeedX;
     }
   }
   if (ballX >= canvas.width) {
-    ballSpeedX = -ballSpeedX;
+    if (ballY > compPaddleY && ballY < compPaddleY + PADDLE_HEIGHT) {
+      ballSpeedX = -ballSpeedX;
+      // console.log('HIT');
+    } else {
+      // ballReset();
+      ballSpeedX = -ballSpeedX;
+    }
   }
 
   if (ballY <= 0) {
@@ -72,7 +76,7 @@ function drawEverything() {
   colorRect(0, playerPaddleY, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
   // AI Paddle
   colorRect(
-    canvas.width - 10,
+    canvas.width - PADDLE_THICKNESS,
     compPaddleY,
     PADDLE_THICKNESS,
     PADDLE_HEIGHT,
