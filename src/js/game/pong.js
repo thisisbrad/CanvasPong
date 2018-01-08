@@ -36,7 +36,7 @@ window.onload = () => {
   canvas.addEventListener('mousemove', e => {
     console.log('it moved');
     const mousePos = calcualtePlayerPaddle(e);
-    compPaddleY = mousePos.y - PADDLE_HEIGHT / 2;
+    playerPaddleY = mousePos.y - PADDLE_HEIGHT / 2;
   });
 };
 
@@ -48,8 +48,8 @@ function moveEverything() {
       ballSpeedX = -ballSpeedX;
       console.log('HIT');
     } else {
-      // ballReset();
-      ballSpeedX = -ballSpeedX;
+      ballReset();
+      // ballSpeedX = -ballSpeedX;
     }
   }
   if (ballX >= canvas.width) {
@@ -69,10 +69,10 @@ function drawEverything() {
   colorRect(0, 0, canvas.width, canvas.height, 'black');
 
   // Player Paddle
-  colorRect(10, playerPaddleY, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
+  colorRect(0, playerPaddleY, PADDLE_THICKNESS, PADDLE_HEIGHT, 'white');
   // AI Paddle
   colorRect(
-    canvas.width - 20,
+    canvas.width - 10,
     compPaddleY,
     PADDLE_THICKNESS,
     PADDLE_HEIGHT,
