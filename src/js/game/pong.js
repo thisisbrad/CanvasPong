@@ -10,7 +10,7 @@ const PADDLE_HEIGHT = 100;
 const PADDLE_THICKNESS = 10;
 let playerPaddleY = 250;
 let compPaddleY = 400;
-let compSpeedY = 6;
+let compSpeedY = 16;
 
 let playerScore = 0;
 let compScore = 0;
@@ -61,7 +61,7 @@ function moveEverything() {
       ballSpeedX = -ballSpeedX;
       console.log('HIT');
     } else {
-      compScore++;
+      ++compScore;
       ballReset();
     }
   }
@@ -69,7 +69,7 @@ function moveEverything() {
     if (ballY > compPaddleY && ballY < compPaddleY + PADDLE_HEIGHT) {
       ballSpeedX = -ballSpeedX;
     } else {
-      playerScore++;
+      ++playerScore;
       ballReset();
     }
   }
@@ -101,8 +101,9 @@ function drawEverything() {
   colorCircle(ballX, ballY, 10, 'greenyellow');
 
   // Score board
-  canvasContext.fillText(`Score: ${playerScore}`, 100, 100);
-  canvasContext.fillText(`Score: ${compScore}`, 600, 100);
+  canvasContext.font = '30px Arial';
+  canvasContext.fillText(`Score: ${playerScore}`, 100, 60);
+  canvasContext.fillText(`Score: ${compScore}`, canvas.width - 200, 60);
 }
 
 function ballReset() {
