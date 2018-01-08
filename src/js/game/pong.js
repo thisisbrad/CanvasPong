@@ -59,7 +59,6 @@ function moveEverything() {
   if (ballX < 0) {
     if (ballY > playerPaddleY && ballY < playerPaddleY + PADDLE_HEIGHT) {
       ballSpeedX = -ballSpeedX;
-      console.log('HIT');
     } else {
       ++compScore;
       ballReset();
