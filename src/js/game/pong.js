@@ -6,10 +6,14 @@ let ballSpeedX = 15;
 let ballY = 50;
 let ballSpeedY = 15;
 
-let playerPaddleY = 250;
-let compPaddleY = 400;
 const PADDLE_HEIGHT = 100;
 const PADDLE_THICKNESS = 10;
+let playerPaddleY = 250;
+let compPaddleY = 400;
+let compSpeedY = 6;
+
+let playerScore = 0;
+let compScore = 0;
 
 function calcualtePlayerPaddle(e) {
   const rect = canvas.getBoundingClientRect();
@@ -34,29 +38,39 @@ window.onload = () => {
 
   canvas.addEventListener('mousemove', e => {
     const mousePos = calcualtePlayerPaddle(e);
-    compPaddleY = mousePos.y - PADDLE_HEIGHT / 2;
+    playerPaddleY = mousePos.y - PADDLE_HEIGHT / 2;
   });
 };
 
+function computerMovement() {
+  const paddleCenter = compPaddleY + PADDLE_HEIGHT / 2;
+  if (paddleCenter < ballY - 35) {
+    compPaddleY += compSpeedY;
+  } else if (paddleCenter > ballY + 35) {
+    compPaddleY -= compSpeedY;
+  }
+}
+
 function moveEverything() {
-  ballX = ballX + ballSpeedX;
-  ballY = ballY + ballSpeedY;
+  computerMovement();
+  ballX += ballSpeedX;
+  ballSpeedX;
+  ballY += ballSpeedY;
   if (ballX < 0) {
     if (ballY > playerPaddleY && ballY < playerPaddleY + PADDLE_HEIGHT) {
       ballSpeedX = -ballSpeedX;
       console.log('HIT');
     } else {
-      // ballReset();
-      ballSpeedX = -ballSpeedX;
+      compScore++;
+      ballReset();
     }
   }
   if (ballX >= canvas.width) {
     if (ballY > compPaddleY && ballY < compPaddleY + PADDLE_HEIGHT) {
       ballSpeedX = -ballSpeedX;
-      // console.log('HIT');
     } else {
-      // ballReset();
-      ballSpeedX = -ballSpeedX;
+      playerScore++;
+      ballReset();
     }
   }
 
@@ -85,6 +99,10 @@ function drawEverything() {
 
   // Ball
   colorCircle(ballX, ballY, 10, 'greenyellow');
+
+  // Score board
+  canvasContext.fillText(`Score: ${playerScore}`, 100, 100);
+  canvasContext.fillText(`Score: ${compScore}`, 600, 100);
 }
 
 function ballReset() {
