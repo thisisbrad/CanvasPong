@@ -22,6 +22,9 @@
   "homepage": "https://github.com/thisisbrad/CanvasPong#readme",
   "devDependencies": {
     "browser-sync": "^2.23.2",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1"
   }
